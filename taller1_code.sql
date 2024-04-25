@@ -1,7 +1,7 @@
 /*
 ------TALLER 1 BDD-----
 Integrantes:
-	- Javier Saldano
+	- Nicolas
 	- Bruno Toro
 */
 
