@@ -143,5 +143,12 @@ select e.tipo_espacio, e.ubicacion, e.calificacion
 from espacio as e
 order by 3 desc
 
-
+--10
+select lower(servicio) as servicio, count(*) as total
+from(--los servicios estan escritos en una cadena de texto
+	select unnest(string_to_array(servicios_adicionales,', ')) as servicio --separamos la cadena por la ,
+	from reserva 
+) as servicios
+group by lower(servicio)--agrupamos teniendo en cuenta que todo lo dejamos en minusculas
+order by total desc
 
