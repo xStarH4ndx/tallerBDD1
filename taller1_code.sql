@@ -63,9 +63,10 @@ insert into espacio (tipo_espacio, capacidad_max, ubicacion, servicios_disponibl
 insert into reserva (id_reserva, tipo_espacio, servicios_adicionales, cantidad_asistentes, hora, fecha_reserva)VALUES
 (1, 'Salón de conferencias', 'Proyector, equipo de sonido', 80, '09:00', '2024-04-20'),
 (2, 'Área al aire libre', 'Catering', 150, '14:00', '2024-04-15'),
-(3, 'Sala de reuniones', 'Proyector, coffee break', 15, '11:00', '2024-05-10'),
-(4, 'Salón de eventos', 'Equipo de sonido, catering', 120, '10:30', '2024-06-05'),
-(5, 'Sala de exposiciones', 'Mobiliario', 30, '15:30', '2024-07-20');
+(3, 'Sala de reuniones', 'Proyector, coffee break', 15, '11:00', '2024-05-01'),
+(4, 'Sala de reuniones', 'coffee break', 25, '10:30', '2024-05-05'),
+(5, 'Salón de eventos', 'Equipo de sonido, catering', 120, '10:30', '2024-06-05'),
+(6, 'Sala de exposiciones', 'Mobiliario', 30, '15:30', '2024-07-20');
 
 -- Insertar datos en la tabla contrato
 insert into contrato (id_reserva, rut_cliente, precio)VALUES
@@ -73,8 +74,8 @@ insert into contrato (id_reserva, rut_cliente, precio)VALUES
 (2, '98765432-1', 1800),
 (3, '55555555-5', 700),
 (4, '11111111-1', 2500),
-(2, '12345678-9', 3200),
-(5, '99999999-9', 1000);
+(5, '12345678-9', 3200),
+(6, '99999999-9', 1000);
 
 
 /*---------------CONSULTAS---------------*/
@@ -114,6 +115,15 @@ inner join cliente as client on c.rut_cliente=client.rut_cliente
 where c.rut_cliente like '12345678-9' --RUT ESPECIFICO DEL CLIENTE DESEADO
 
 --6
+select *
+from reserva as r
+where r.fecha_reserva >= '2024-04-29'
+and r.fecha_reserva <= '2024-05-05'
+
+--7
+
+
+
 
 
 
