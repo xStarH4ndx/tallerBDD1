@@ -122,9 +122,19 @@ and r.fecha_reserva <= '2024-05-05'
 
 --7
 
+/*No tengo la mas minima idea de como hacerlo*/
 
 
-
+--8
+select e.tipo_espacio,
+case
+	when r.id_reserva is not null --si el valor NO es NULL
+	then 'No disponible' --significa que NO esta disponible
+	else 'Disponible'    --si es null, significa que esta disponible
+end as disponibilidad
+from espacio as e
+left join reserva as r on e.tipo_espacio= r.tipo_espacio
+and r.fecha_reserva= '2024-05-05' --fecha especifica
 
 
 
