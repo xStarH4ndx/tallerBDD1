@@ -9,7 +9,6 @@ DROP TABLE IF EXISTS reserva;
 DROP TABLE IF EXISTS espacio;
 DROP TABLE IF EXISTS cliente;
 */
-
 /*---------POBLAR BASE DE DATOS--------*/
 create table cliente(
 	rut_cliente text primary key,
@@ -39,7 +38,6 @@ create table reserva(
 create table contrato(
 	id_reserva integer not null references reserva(id_reserva),
 	rut_cliente text not null references cliente(rut_cliente),
-	fecha_contrato text not null,
 	precio integer not null
 );
 
@@ -63,18 +61,18 @@ insert into espacio (tipo_espacio, capacidad_max, ubicacion, servicios_disponibl
 -- Insertar datos en la tabla reserva
 insert into reserva (id_reserva, tipo_espacio, servicios_adicionales, cantidad_asistentes, hora, fecha_reserva)VALUES
 (1, 'Salón de conferencias', 'Proyector, equipo de sonido', 80, '09:00', '2024-04-20'),
-(2, 'Área al aire libre', 'Catering', 150, '14:00', '2024-05-15'),
-(3, 'Sala de reuniones', 'Proyector, coffee break', 15, '11:00', '2024-06-10'),
-(4, 'Salón de eventos', 'Equipo de sonido, catering', 120, '10:30', '2024-07-05'),
-(5, 'Sala de exposiciones', 'Mobiliario', 30, '15:30', '2024-08-20');
+(2, 'Área al aire libre', 'Catering', 150, '14:00', '2024-04-15'),
+(3, 'Sala de reuniones', 'Proyector, coffee break', 15, '11:00', '2024-04-10'),
+(4, 'Salón de eventos', 'Equipo de sonido, catering', 120, '10:30', '2024-04-05'),
+(5, 'Sala de exposiciones', 'Mobiliario', 30, '15:30', '2024-04-20');
 
 -- Insertar datos en la tabla contrato
-insert into contrato (id_reserva, rut_cliente, fecha_contrato, precio)VALUES
-(1, '12345678-9', '2024-04-19', 1200),
-(2, '98765432-1', '2024-04-20', 1800),
-(3, '55555555-5', '2024-04-21', 700),
-(4, '11111111-1', '2024-04-22', 2500),
-(5, '99999999-9', '2024-04-23', 1000);
+insert into contrato (id_reserva, rut_cliente, precio)VALUES
+(1, '12345678-9', 1200),
+(2, '98765432-1', 1800),
+(3, '55555555-5', 700),
+(4, '11111111-1', 2500),
+(5, '99999999-9', 1000);
 
 
 /*---------------CONSULTAS---------------*/
@@ -89,13 +87,21 @@ order by e.capacidad_max asc
 select r.tipo_espacio, r.hora, r.fecha_reserva
 from reserva as r
 where r.tipo_espacio = 'Área al aire libre' --tipo de espacio
-and r.fecha_reserva >='2024-05-15' --rango de fechas
-or r.fecha_reserva <='2024-05-15'
+and (r.fecha_reserva >='2024-05-10' or r.fecha_reserva <='2024-07-15')--rango de fechas
 
+--3
+select *
+from espacio as e
+where e.servicios_disponibles like '%atering%'
+or e.servicios_disponibles like '%quipo de sonido%'
 
-
-
-
+--4
+select sum(c.precio) as total_ingreso, TO_CHAR(TO_DATE(r.fecha_reserva,'YYYY-MM-DD'), 'Month') as Mes
+from contrato as c
+inner join reserva as r on c.id_reserva = r.id_reserva
+where extract(Month from TO_DATE(r.fecha_reserva, 'YYYY-MM-DD'))= 3
+and extract(Year from TO_DATE(r.fecha_reserva, 'YYYY-MM-DD'))= 2024
+group by TO_CHAR(TO_DATE(r.fecha_reserva, 'YYYY-MM-DD'), 'Month')
 
 
 
