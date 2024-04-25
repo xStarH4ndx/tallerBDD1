@@ -4,6 +4,7 @@ Integrantes:
 1) Nicolas
 2) Bruno Toro Elgueta - 20864066-6 - ICCI
 
+--PARA RESETEAR LA BDD--
 DROP TABLE IF EXISTS contrato;
 DROP TABLE IF EXISTS reserva;
 DROP TABLE IF EXISTS espacio;
