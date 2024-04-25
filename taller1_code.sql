@@ -1,7 +1,7 @@
 /*
 ------TALLER 1 BDD-----
 Integrantes:
-1) Nicolas
+1) Nicolas Aburto Lopez - 18758339-K - ICCI
 2) Bruno Toro Elgueta - 20864066-6 - ICCI
 
 --PARA RESETEAR LA BDD--
