@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS reserva;
 DROP TABLE IF EXISTS espacio;
 DROP TABLE IF EXISTS cliente;
 */
+
 /*---------POBLAR BASE DE DATOS--------*/
 create table cliente(
 	rut_cliente text primary key,
@@ -62,9 +63,9 @@ insert into espacio (tipo_espacio, capacidad_max, ubicacion, servicios_disponibl
 insert into reserva (id_reserva, tipo_espacio, servicios_adicionales, cantidad_asistentes, hora, fecha_reserva)VALUES
 (1, 'Salón de conferencias', 'Proyector, equipo de sonido', 80, '09:00', '2024-04-20'),
 (2, 'Área al aire libre', 'Catering', 150, '14:00', '2024-04-15'),
-(3, 'Sala de reuniones', 'Proyector, coffee break', 15, '11:00', '2024-04-10'),
-(4, 'Salón de eventos', 'Equipo de sonido, catering', 120, '10:30', '2024-04-05'),
-(5, 'Sala de exposiciones', 'Mobiliario', 30, '15:30', '2024-04-20');
+(3, 'Sala de reuniones', 'Proyector, coffee break', 15, '11:00', '2024-05-10'),
+(4, 'Salón de eventos', 'Equipo de sonido, catering', 120, '10:30', '2024-06-05'),
+(5, 'Sala de exposiciones', 'Mobiliario', 30, '15:30', '2024-07-20');
 
 -- Insertar datos en la tabla contrato
 insert into contrato (id_reserva, rut_cliente, precio)VALUES
@@ -72,6 +73,7 @@ insert into contrato (id_reserva, rut_cliente, precio)VALUES
 (2, '98765432-1', 1800),
 (3, '55555555-5', 700),
 (4, '11111111-1', 2500),
+(2, '12345678-9', 3200),
 (5, '99999999-9', 1000);
 
 
@@ -99,13 +101,19 @@ or e.servicios_disponibles like '%quipo de sonido%'
 select sum(c.precio) as total_ingreso, TO_CHAR(TO_DATE(r.fecha_reserva,'YYYY-MM-DD'), 'Month') as Mes
 from contrato as c
 inner join reserva as r on c.id_reserva = r.id_reserva
-where extract(Month from TO_DATE(r.fecha_reserva, 'YYYY-MM-DD'))= 3
-and extract(Year from TO_DATE(r.fecha_reserva, 'YYYY-MM-DD'))= 2024
+where extract(Month from TO_DATE(r.fecha_reserva, 'YYYY-MM-DD'))= 4 --SELECCIONAR MES
+and extract(Year from TO_DATE(r.fecha_reserva, 'YYYY-MM-DD'))= 2024 --SELECCIONAR AÑO
 group by TO_CHAR(TO_DATE(r.fecha_reserva, 'YYYY-MM-DD'), 'Month')
 
 
+--5
+select c.rut_cliente,client.nombre_cliente, r.tipo_espacio ,r.fecha_reserva
+from contrato as c
+inner join reserva as r on c.id_reserva= r.id_reserva
+inner join cliente as client on c.rut_cliente=client.rut_cliente
+where c.rut_cliente like '12345678-9' --RUT ESPECIFICO DEL CLIENTE DESEADO
 
-
+--6
 
 
 
