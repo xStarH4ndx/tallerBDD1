@@ -1,8 +1,8 @@
 /*
 ------TALLER 1 BDD-----
 Integrantes:
-	- Nicolas
-	- Bruno Toro
+1) Nicolas
+2) Bruno Toro Elgueta - 20864066-6 - ICCI
 
 DROP TABLE IF EXISTS contrato;
 DROP TABLE IF EXISTS reserva;
@@ -151,4 +151,6 @@ from(--los servicios estan escritos en una cadena de texto
 ) as servicios
 group by lower(servicio)--agrupamos teniendo en cuenta que todo lo dejamos en minusculas
 order by total desc
+
+
 
