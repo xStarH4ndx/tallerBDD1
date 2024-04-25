@@ -3,8 +3,12 @@
 Integrantes:
 	- Nicolas
 	- Bruno Toro
-*/
 
+DROP TABLE IF EXISTS contrato;
+DROP TABLE IF EXISTS reserva;
+DROP TABLE IF EXISTS espacio;
+DROP TABLE IF EXISTS cliente;
+*/
 
 create table cliente(
 	rut_cliente text primary key,
@@ -41,11 +45,11 @@ create table contrato(
 
 -- Insertar datos en la tabla cliente
 INSERT INTO cliente (rut_cliente, nombre_cliente, direccion, correo, telefono)VALUES
-('12345678-9', 'Juan Pérez', 'Calle 123', 'juan@example.com', '+56912345678'),
-('98765432-1', 'María Gómez', 'Avenida Principal', 'maria@example.com', '+56987654321'),
-('55555555-5', 'Pedro Rodríguez', 'Avenida Central', 'pedro@example.com', '+56955555555'),
-('11111111-1', 'Ana Martínez', 'Calle Secundaria', 'ana@example.com', '+56911111111'),
-('99999999-9', 'Laura López', 'Calle Principal', 'laura@example.com', '+56999999999');
+('12345678-9', 'Juan Pérez', 'Calle 123', 'juan@ucn.com', '+56912345678'),
+('98765432-1', 'María Gómez', 'Avenida Principal', 'maria@ucn.com', '+56987654321'),
+('55555555-5', 'Pedro Rodríguez', 'Avenida Central', 'pedro@ucn.com', '+56955555555'),
+('11111111-1', 'Ana Martínez', 'Calle Secundaria', 'ana@ucn.com', '+56911111111'),
+('99999999-9', 'Laura López', 'Calle Principal', 'laura@ucn.com', '+56999999999');
 
 -- Insertar datos en la tabla espacio
 INSERT INTO espacio (tipo_espacio, capacidad_max, ubicacion, servicios_disponibles, tarifas)VALUES
