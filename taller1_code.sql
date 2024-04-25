@@ -123,9 +123,11 @@ where r.fecha_reserva >= '2024-04-29'
 and r.fecha_reserva <= '2024-05-05'
 
 --7
-
-/*No tengo la mas minima idea de como hacerlo*/
-
+select tipo_espacio, count(*) as num_reservas --COUNT actua como un contador
+from reserva
+where fecha_reserva > '2023-12-31'
+group by tipo_espacio
+order by num_reservas desc
 
 --8
 select e.tipo_espacio,
