@@ -85,3 +85,23 @@ inner join reserva as r on e.tipo_espacio = r.tipo_espacio
 where r.fecha_reserva != '2024-06-10'
 order by e.capacidad_max asc
 
+--2
+select r.tipo_espacio, r.hora, r.fecha_reserva
+from reserva as r
+where r.tipo_espacio = 'Área al aire libre' --tipo de espacio
+and r.fecha_reserva >='2024-05-15' --rango de fechas
+or r.fecha_reserva <='2024-05-15'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
