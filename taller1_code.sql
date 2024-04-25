@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS espacio;
 DROP TABLE IF EXISTS cliente;
 */
 
+
 /*---------POBLAR BASE DE DATOS--------*/
 create table cliente(
 	rut_cliente text primary key,
@@ -24,7 +25,8 @@ create table espacio(
 	capacidad_max integer not null,
 	ubicacion text not null,
 	servicios_disponibles text not null,
-	tarifas text not null
+	tarifas text not null,
+	calificacion integer not null
 );
 
 create table reserva(
@@ -52,12 +54,12 @@ insert into cliente (rut_cliente, nombre_cliente, direccion, correo, telefono)VA
 ('99999999-9', 'Laura López', 'Calle Principal', 'laura@ucn.com', '+56999999999');
 
 -- Insertar datos en la tabla espacio
-insert into espacio (tipo_espacio, capacidad_max, ubicacion, servicios_disponibles, tarifas)VALUES
-('Salón de conferencias', 100, 'Piso 1', 'Proyector, equipo de sonido, catering', '1000'),
-('Área al aire libre', 200, 'Jardín', 'Catering, mobiliario', '1500'),
-('Sala de reuniones', 20, 'Piso 2', 'Proyector, pizarra, coffee break', '500'),
-('Salón de eventos', 150, 'Piso 3', 'Proyector, equipo de sonido, catering', '2000'),
-('Sala de exposiciones', 50, 'Piso 4', 'Mobiliario, iluminación', '800');
+insert into espacio (tipo_espacio, capacidad_max, ubicacion, servicios_disponibles, tarifas, calificacion)VALUES
+('Salón de conferencias', 100, 'Piso 1', 'Proyector, equipo de sonido, catering', '1000',5),
+('Área al aire libre', 200, 'Jardín', 'Catering, mobiliario', '1500',3),
+('Sala de reuniones', 20, 'Piso 2', 'Proyector, pizarra, coffee break', '500',4),
+('Salón de eventos', 150, 'Piso 3', 'Proyector, equipo de sonido, catering', '2000',2.5),
+('Sala de exposiciones', 50, 'Piso 4', 'Mobiliario, iluminación', '800',4);
 
 -- Insertar datos en la tabla reserva
 insert into reserva (id_reserva, tipo_espacio, servicios_adicionales, cantidad_asistentes, hora, fecha_reserva)VALUES
@@ -136,6 +138,10 @@ from espacio as e
 left join reserva as r on e.tipo_espacio= r.tipo_espacio
 and r.fecha_reserva= '2024-05-05' --fecha especifica
 
+--9
+select e.tipo_espacio, e.ubicacion, e.calificacion
+from espacio as e
+order by 3 desc
 
 
 
